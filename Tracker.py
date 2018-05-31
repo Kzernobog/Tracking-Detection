@@ -69,7 +69,7 @@ class GOTURNTracker(AbstractTracker):
         return: None"""
         if self.tracker_type == TrackerType.GOTURN:
             self.tracker = cv2.TrackerGOTURN_create()
-            goturn_rect = rectangle
+            goturn_rect = tuple(rectangle)
             self.tracker.init(frame, goturn_rect)
             return None
 
@@ -83,8 +83,8 @@ class GOTURNTracker(AbstractTracker):
             # Tracking success
             xmin = int(bbox[0])
             ymin = int(bbox[1])
-            xmax = int(bbox[0] + bbox[2])
-            ymax = int(bbox[1] + bbox[3])
+            xmax = int(bbox[2])
+            ymax = int(bbox[3])
         result = [xmin,ymin,xmax,ymax]
         return result
 
@@ -107,7 +107,7 @@ def cv_tracking():
         tracker = cv2.TrackerGOTURN_create()"""
 
      # Read video
-    video = cv2.VideoCapture("/home/ujjawal/project/Tracking-Detection/tankdemo.mp4")
+    video = cv2.VideoCapture("/home/aditya/Documents/Projects/atgm_vision_module/demo-weights/demo_vids/tank1.mp4")
     ok, frame = video.read()
 
     # check for video
@@ -117,7 +117,7 @@ def cv_tracking():
 
     # Read first frame.
     count = 0
-    while (count < 6300):
+    while (count < 10):
         ok, frame = video.read()
         if not ok:
             print ('Cannot read video file')
@@ -155,7 +155,7 @@ def cv_tracking():
         if ok:
             # Tracking success
             p1 = (int(bbox[0]), int(bbox[1]))
-            p2 = (int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3]))
+            p2 = (int(bbox[2]), int(bbox[3]))
             cv2.rectangle(frame, p1, p2, (255, 0, 0), 2, 1)
         else:
             # Tracking failure
