@@ -264,7 +264,7 @@ class ImageProcessor(object):
     # initialize the tracker
     def initialize_tracker(self, rectangle, frame):
 
-        self.tracker = DLIBTracker()
+        self.tracker = GOTURNTracker()
         self.tracker.start_tracking(rectangle, frame)
         return None 
 

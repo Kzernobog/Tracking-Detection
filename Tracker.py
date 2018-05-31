@@ -56,7 +56,7 @@ class DLIBTracker(AbstractTracker):
 class GOTURNTracker(AbstractTracker):
 
 # Constuctor
-    def __init__(self, tracker_type=TrackerType.GOTURN): 
+    def __init__(self, tracker_type=TrackerType.GOTURN):
         # initializing the type of tracker to be used
         self.tracker_type = tracker_type
         self.tracker = None
@@ -84,9 +84,9 @@ class GOTURNTracker(AbstractTracker):
             xmin = int(bbox[0])
             ymin = int(bbox[1])
             xmax = int(bbox[0] + bbox[2])
-            ymax = int(bbox[1] + bbox[3])   
+            ymax = int(bbox[1] + bbox[3])
         result = [xmin,ymin,xmax,ymax]
-        return result 
+        return result
 
 
 def cv_tracking():
@@ -133,15 +133,8 @@ def cv_tracking():
 
     # Initialize tracker with first frame and bounding box
     #ok = tracker.init(frame, bbox)
-    
-    
-    
     gt = GOTURNTracker()
     gt.start_tracking(bbox,frame)
-    
-    
-    
-    
     while True:
         # Read a new frame
         ok, frame = video.read()
@@ -153,9 +146,7 @@ def cv_tracking():
 
         # Update tracker
         #ok, bbox = tracker.update(frame)
-        
         bbox = gt.update_frame(frame)
-        
         print(bbox)
         # Calculate Frames per second (FPS)
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer);
@@ -182,10 +173,8 @@ def cv_tracking():
         # Exit if ESC pressed
         k = cv2.waitKey(1) & 0xff
         if k == 27: break
-        
-        
 if __name__ == "__main__":
-    cv_tracking()        
+    cv_tracking() 
 
 
 
