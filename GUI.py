@@ -285,7 +285,7 @@ class GUI(object):
 
 
 def main():
-    video = GUI(App_Mode.LASER_MODE)
+    video = GUI(App_Mode.DEBUG_MODE)
     video.run()
     video.release()
     return None
