@@ -27,7 +27,7 @@ class ImageProcessor(object):
     def __init__(self, name=None, mode = ImgProMode.VIDEO):
         self.name = name
         self._video = None
-        self.weight_path = "/home/aditya/Documents/Projects/atgm_vision_module/demo-weights/YOLO_WEIGHTS/weights_coco(1000Epoch1Class).h5"
+        self.weight_path = "/home/legend/Documents/Deep_Learning/Tracking-Detection/weights_coco(1000).h5"
         # frame event
         self.frameEvent = ev.Event_(frame=np.ndarray)
         # tracked frame event
@@ -264,7 +264,7 @@ class ImageProcessor(object):
     # initialize the tracker
     def initialize_tracker(self, rectangle, frame):
 
-        self.tracker = DLIBTracker()
+        self.tracker = RE3Tracker()
         self.tracker.start_tracking(rectangle, frame)
         return None 
 
@@ -279,7 +279,7 @@ class ImageProcessor(object):
 
 # main function to test the class
 def main():
-    video_name = '/home/aditya/Documents/Projects/atgm_vision_module/demo-weights/demo_vids/tanktest.mp4'
+    video_name = '/home/legend/Documents/Deep_Learning/Datasets/Tank_videos/tank1.mp4'
     ip = ImageProcessor(video_name)
 
     return None
